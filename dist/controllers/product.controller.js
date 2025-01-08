@@ -51,21 +51,19 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createProduct = createProduct;
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { productCode } = req.params;
+        const { productCode } = req.params; // Ensure this is passed
         const { status, description, discount } = req.body;
-        const product = yield product_model_1.Product.findOne({ productCode });
+        const product = yield product_model_1.Product.findOne({ productCode }); // Match on productCode
         if (!product) {
             return res.status(404).json({ message: "Product not found." });
         }
-        if (status) {
+        // Update fields conditionally
+        if (status)
             product.status = status;
-        }
-        if (description) {
+        if (description)
             product.description = description;
-        }
-        if (discount !== undefined) {
+        if (discount !== undefined)
             product.discount = discount;
-        }
         yield product.save();
         return res.status(200).json({
             message: "Product updated successfully.",
@@ -73,9 +71,10 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     catch (error) {
-        return res
-            .status(500)
-            .json({ message: "An error occurred.", error: error.message });
+        return res.status(500).json({
+            message: "An error occurred.",
+            error: error.message,
+        });
     }
 });
 exports.updateProduct = updateProduct;

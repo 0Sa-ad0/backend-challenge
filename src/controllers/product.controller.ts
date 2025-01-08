@@ -53,15 +53,14 @@ export const updateProduct = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { productCode } = req.params; // Ensure this is passed
+    const { productCode } = req.params;
     const { status, description, discount } = req.body;
 
-    const product = await Product.findOne({ productCode }); // Match on productCode
+    const product = await Product.findOne({ productCode });
     if (!product) {
       return res.status(404).json({ message: "Product not found." });
     }
 
-    // Update fields conditionally
     if (status) product.status = status;
     if (description) product.description = description;
     if (discount !== undefined) product.discount = discount;
@@ -77,5 +76,47 @@ export const updateProduct = async (
       message: "An error occurred.",
       error: error.message,
     });
+  }
+};
+
+export const getProducts = async (req: Request, res: Response) => {
+  try {
+    const { categoryId, search, minPrice, maxPrice } = req.query;
+
+    const filterConditions: any = {};
+
+    if (categoryId) {
+      filterConditions.categoryId = categoryId;
+    }
+
+    if (search) {
+      filterConditions.name = { $regex: search, $options: "i" };
+    }
+
+    if (minPrice || maxPrice) {
+      filterConditions.price = {};
+      if (minPrice) filterConditions.price.$gte = minPrice;
+      if (maxPrice) filterConditions.price.$lte = maxPrice;
+    }
+
+    const products = await Product.find(filterConditions);
+
+    const productsWithPricing = products.map((product) => {
+      const finalPrice =
+        product.price - product.price * (product.discount / 100);
+      return {
+        ...product.toObject(),
+        finalPrice,
+      };
+    });
+
+    return res.status(200).json({
+      message: "Products fetched successfully.",
+      products: productsWithPricing,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "An error occurred.", error: error.message });
   }
 };
