@@ -15,7 +15,11 @@ const router = express.Router();
 
 router.post("/", createProductValidation as any, createProduct as any);
 
-router.put("/:productId", updateProductValidation as any, updateProduct as any);
+router.put(
+  "/:productCode",
+  updateProductValidation as any,
+  updateProduct as any
+);
 
 router.get("/", getProducts as any);
 

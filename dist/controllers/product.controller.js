@@ -1,4 +1,5 @@
 "use strict";
+// src/controllers/product.controller.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProduct = exports.createProduct = void 0;
+exports.getProducts = exports.updateProduct = exports.createProduct = void 0;
 const product_model_1 = require("../models/product.model");
 const category_model_1 = require("../models/category.model");
 const productCode_util_1 = require("../utils/productCode.util");
@@ -51,13 +52,14 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createProduct = createProduct;
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { productCode } = req.params; // Ensure this is passed
+        const { productCode } = req.params;
         const { status, description, discount } = req.body;
-        const product = yield product_model_1.Product.findOne({ productCode }); // Match on productCode
+        console.log("Received productCode:", productCode);
+        const product = yield product_model_1.Product.findOne({ productCode });
         if (!product) {
+            console.log("Product not found for productCode:", productCode);
             return res.status(404).json({ message: "Product not found." });
         }
-        // Update fields conditionally
         if (status)
             product.status = status;
         if (description)
@@ -78,3 +80,37 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateProduct = updateProduct;
+const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { categoryId, search, minPrice, maxPrice } = req.query;
+        const filterConditions = {};
+        if (categoryId) {
+            filterConditions.categoryId = categoryId;
+        }
+        if (search) {
+            filterConditions.name = { $regex: search, $options: "i" };
+        }
+        if (minPrice || maxPrice) {
+            filterConditions.price = {};
+            if (minPrice)
+                filterConditions.price.$gte = minPrice;
+            if (maxPrice)
+                filterConditions.price.$lte = maxPrice;
+        }
+        const products = yield product_model_1.Product.find(filterConditions);
+        const productsWithPricing = products.map((product) => {
+            const finalPrice = product.price - product.price * (product.discount / 100);
+            return Object.assign(Object.assign({}, product.toObject()), { finalPrice });
+        });
+        return res.status(200).json({
+            message: "Products fetched successfully.",
+            products: productsWithPricing,
+        });
+    }
+    catch (error) {
+        return res
+            .status(500)
+            .json({ message: "An error occurred.", error: error.message });
+    }
+});
+exports.getProducts = getProducts;

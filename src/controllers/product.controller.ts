@@ -58,8 +58,10 @@ export const updateProduct = async (
     const { productCode } = req.params;
     const { status, description, discount } = req.body;
 
+    console.log("Received productCode:", productCode);
     const product = await Product.findOne({ productCode });
     if (!product) {
+      console.log("Product not found for productCode:", productCode);
       return res.status(404).json({ message: "Product not found." });
     }
 
@@ -81,7 +83,10 @@ export const updateProduct = async (
   }
 };
 
-export const getProducts = async (req: Request, res: Response) => {
+export const getProducts = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const { categoryId, search, minPrice, maxPrice } = req.query;
 
