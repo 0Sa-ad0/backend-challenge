@@ -1,13 +1,14 @@
 // src/controllers/product.controller.ts
 
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { Product } from "../models/product.model";
 import { Category } from "../models/category.model";
 import { generateProductCode } from "../utils/productCode.util";
 
 export const createProduct = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): Promise<Response> => {
   try {
     const { name, description, price, discount, image, status, categoryId } =
@@ -44,6 +45,7 @@ export const createProduct = async (
       product,
     });
   } catch (error) {
+    next(error);
     return res
       .status(500)
       .json({ message: "An error occurred.", error: error.message });
@@ -52,7 +54,8 @@ export const createProduct = async (
 
 export const updateProduct = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): Promise<Response> => {
   try {
     const { productCode } = req.params;
@@ -76,6 +79,7 @@ export const updateProduct = async (
       product,
     });
   } catch (error) {
+    next(error);
     return res.status(500).json({
       message: "An error occurred.",
       error: error.message,
@@ -85,7 +89,8 @@ export const updateProduct = async (
 
 export const getProducts = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): Promise<Response> => {
   try {
     const { categoryId, search, minPrice, maxPrice } = req.query;
@@ -122,6 +127,7 @@ export const getProducts = async (
       products: productsWithPricing,
     });
   } catch (error) {
+    next(error);
     return res
       .status(500)
       .json({ message: "An error occurred.", error: error.message });
