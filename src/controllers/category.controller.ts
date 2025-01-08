@@ -1,3 +1,5 @@
+// src/controllers/category.controller.ts
+
 import { Request, Response } from "express";
 import { Category } from "../models/category.model";
 

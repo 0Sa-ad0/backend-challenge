@@ -1,3 +1,5 @@
+// src\routes\product.routes.ts
+
 import express from "express";
 import {
   createProduct,
