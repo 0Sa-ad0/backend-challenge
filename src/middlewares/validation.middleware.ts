@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { Request, Response, NextFunction } from "express";
 
-const createProductValidation = (
+export const createProductValidation = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -24,4 +24,21 @@ const createProductValidation = (
   next();
 };
 
-export default createProductValidation;
+export const updateProductValidation = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const schema = Joi.object({
+    status: Joi.string().valid("In Stock", "Stock Out"),
+    description: Joi.string(),
+    discount: Joi.number().min(0).max(100),
+  });
+
+  const { error } = schema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+  next();
+};

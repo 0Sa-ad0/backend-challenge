@@ -28,9 +28,9 @@ export const createProduct = async (
       name,
       description,
       price,
-      discount: discount || 0, // Default discount to 0 if not provided
+      discount: discount || 0,
       image,
-      status: status || "In Stock", // Default status to "In Stock"
+      status: status || "In Stock",
       productCode,
       categoryId,
     });
@@ -45,5 +45,37 @@ export const createProduct = async (
     return res
       .status(500)
       .json({ message: "An error occurred.", error: error.message });
+  }
+};
+
+export const updateProduct = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { productCode } = req.params; // Ensure this is passed
+    const { status, description, discount } = req.body;
+
+    const product = await Product.findOne({ productCode }); // Match on productCode
+    if (!product) {
+      return res.status(404).json({ message: "Product not found." });
+    }
+
+    // Update fields conditionally
+    if (status) product.status = status;
+    if (description) product.description = description;
+    if (discount !== undefined) product.discount = discount;
+
+    await product.save();
+
+    return res.status(200).json({
+      message: "Product updated successfully.",
+      product,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "An error occurred.",
+      error: error.message,
+    });
   }
 };

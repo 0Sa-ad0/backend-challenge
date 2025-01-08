@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createProduct = void 0;
+exports.updateProduct = exports.createProduct = void 0;
 const product_model_1 = require("../models/product.model");
 const category_model_1 = require("../models/category.model");
 const productCode_util_1 = require("../utils/productCode.util");
@@ -30,9 +30,9 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             name,
             description,
             price,
-            discount: discount || 0, // Default discount to 0 if not provided
+            discount: discount || 0,
             image,
-            status: status || "In Stock", // Default status to "In Stock"
+            status: status || "In Stock",
             productCode,
             categoryId,
         });
@@ -49,3 +49,33 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createProduct = createProduct;
+const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productCode } = req.params;
+        const { status, description, discount } = req.body;
+        const product = yield product_model_1.Product.findOne({ productCode });
+        if (!product) {
+            return res.status(404).json({ message: "Product not found." });
+        }
+        if (status) {
+            product.status = status;
+        }
+        if (description) {
+            product.description = description;
+        }
+        if (discount !== undefined) {
+            product.discount = discount;
+        }
+        yield product.save();
+        return res.status(200).json({
+            message: "Product updated successfully.",
+            product,
+        });
+    }
+    catch (error) {
+        return res
+            .status(500)
+            .json({ message: "An error occurred.", error: error.message });
+    }
+});
+exports.updateProduct = updateProduct;

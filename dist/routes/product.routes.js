@@ -5,8 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const product_controller_1 = require("../controllers/product.controller");
-const validation_middleware_1 = __importDefault(require("../middlewares/validation.middleware"));
+const validation_middleware_1 = require("../middlewares/validation.middleware");
 const router = express_1.default.Router();
-// POST /products
-router.post("/", validation_middleware_1.default, product_controller_1.createProduct);
+// POST /products - Create a new product
+router.post("/", validation_middleware_1.createProductValidation, product_controller_1.createProduct);
+// PUT /products/:productId - Update an existing product
+router.put("/:productId", validation_middleware_1.updateProductValidation, product_controller_1.updateProduct);
 exports.default = router;
