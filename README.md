@@ -13,6 +13,7 @@ POST http://localhost:3000/categories/main
     "name": "main category",
     "description": "main category for all subcategories"
 }
+```
 
 Response Example:
 {
