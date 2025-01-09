@@ -8,7 +8,7 @@
 
 POST http://localhost:3000/categories/main
 **Request Body:**
-json
+```json
 {
     "name": "main category",
     "description": "main category for all subcategories"
