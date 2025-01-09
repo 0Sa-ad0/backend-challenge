@@ -4,10 +4,10 @@
 
 ### 1. Main Category
 
-**Endpoint:**
+**Endpoint:** `http://localhost:3000/categories/main`
+**Method:** `POST`
 
-POST http://localhost:3000/categories/main
-**Request Body:**
+#### Request Body
 ```json
 {
     "name": "main category",
@@ -25,13 +25,12 @@ Response Example:
 }
 ```
 
-Subcategories
-Endpoint:
-
-POST http://localhost:3000/categories/sub
+#### Subcategories
+**Endpoint:** `http://localhost:3000/categories/sub`
+**Method:** `POST`
 
 Example 1: Mobile Phones
-Request Body:
+#### Request Body
 
 ```json
 {
@@ -53,7 +52,7 @@ Response Example:
 ```
 
 Example 2: Laptops
-Request Body:
+#### Request Body
 
 ```json
 {
@@ -75,7 +74,7 @@ Response Example:
 ```
 
 Example 3: Tablets
-Request Body:
+#### Request Body
 
 ```json
 {
@@ -97,7 +96,7 @@ Response Example:
 ```
 
 Example 4: Wearables
-Request Body:
+#### Request Body
 
 ```json
 {
@@ -119,7 +118,7 @@ Response Example:
 ```
 
 Example 5: Home Appliances
-Request Body:
+#### Request Body
 
 ```json
 {
@@ -149,3 +148,4 @@ Response Example:
     "name": "main category",
     "description": "main category for all subcategories"
 }
+```
