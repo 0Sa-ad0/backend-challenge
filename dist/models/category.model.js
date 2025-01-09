@@ -39,6 +39,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const CategorySchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
     description: { type: String },
+    parentCategory: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "Category" },
 }, { timestamps: true });
 const Category = mongoose_1.default.model("Category", CategorySchema);
 exports.Category = Category;

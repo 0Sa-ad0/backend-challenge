@@ -10,6 +10,7 @@ import {
   createProductValidation,
   updateProductValidation,
 } from "../middlewares/validation.middleware";
+import { getProductsBySubcategory } from "../controllers/category.controller";
 
 const router = express.Router();
 
@@ -22,5 +23,7 @@ router.put(
 );
 
 router.get("/", getProducts as any);
+
+router.get("/subcategory/:subcategoryId", getProductsBySubcategory as any);
 
 export default router;

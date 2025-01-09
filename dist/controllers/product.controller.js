@@ -14,7 +14,7 @@ exports.getProducts = exports.updateProduct = exports.createProduct = void 0;
 const product_model_1 = require("../models/product.model");
 const category_model_1 = require("../models/category.model");
 const productCode_util_1 = require("../utils/productCode.util");
-const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, description, price, discount, image, status, categoryId } = req.body;
         if (!name || !description || !price || !categoryId) {
@@ -44,13 +44,14 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     catch (error) {
+        next(error);
         return res
             .status(500)
             .json({ message: "An error occurred.", error: error.message });
     }
 });
 exports.createProduct = createProduct;
-const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productCode } = req.params;
         const { status, description, discount } = req.body;
@@ -73,6 +74,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     catch (error) {
+        next(error);
         return res.status(500).json({
             message: "An error occurred.",
             error: error.message,
@@ -80,7 +82,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateProduct = updateProduct;
-const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { categoryId, search, minPrice, maxPrice } = req.query;
         const filterConditions = {};
@@ -108,6 +110,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     catch (error) {
+        next(error);
         return res
             .status(500)
             .json({ message: "An error occurred.", error: error.message });
