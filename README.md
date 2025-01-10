@@ -2,7 +2,7 @@
 
 ### Environment
 
-NodeJS/Express JS, JavaScript/TypeScript, MongoDB
+Express JS, TypeScript, MongoDB
 
 ---
 
