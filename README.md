@@ -69,7 +69,7 @@ Implement a method to retrieve products with the following filters:
 
 ### 1. Main Category
 
-**Endpoint:** `http://localhost:3000/categories/main`
+**Endpoint:** `http://localhost:3000/categories/main` <br>
 **Method:** `POST`
 
 #### Request Body
@@ -93,7 +93,7 @@ Response Example:
 
 #### Subcategories
 
-**Endpoint:** `http://localhost:3000/categories/sub`
+**Endpoint:** `http://localhost:3000/categories/sub` <br>
 **Method:** `POST`
 
 Example 1: Mobile Phones
@@ -212,9 +212,9 @@ Response Example:
 ```
 
 *Products* <br>
-Products for Mobile Phones
-Category ID: `677fdbd1a888fc1a74ed02ec`
-**Endpoint:** `http://localhost:3000/products`
+Products for Mobile Phones <br>
+Category ID: `677fdbd1a888fc1a74ed02ec` <br>
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `POST`
 
 #### Request Body
@@ -238,13 +238,40 @@ Category ID: `677fdbd1a888fc1a74ed02ec`
         "image": "https://example.com/iphone-14-pro.jpg",
         "status": "In Stock",
         "categoryId": "677fdbd1a888fc1a74ed02ec"
+    },
+    {
+        "name": "Pixel 7",
+        "description": "Google's newest Pixel device",
+        "price": 799.99,
+        "discount": 15,
+        "image": "https://example.com/pixel-7.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdbd1a888fc1a74ed02ec"
+    },
+    {
+        "name": "OnePlus 11",
+        "description": "Flagship killer with premium specs",
+        "price": 699.99,
+        "discount": 20,
+        "image": "https://example.com/oneplus-11.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdbd1a888fc1a74ed02ec"
+    },
+    {
+        "name": "Moto G Power",
+        "description": "Affordable smartphone with long battery life",
+        "price": 199.99,
+        "discount": 0,
+        "image": "https://example.com/moto-g-power.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdbd1a888fc1a74ed02ec"
     }
 ]
 ```
 
-Products for Laptops
-Category ID: `677fdcb2a888fc1a74ed02ef`
-**Endpoint:** `http://localhost:3000/products`
+Products for Laptops <br>
+Category ID: `677fdcb2a888fc1a74ed02ef` <br>
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `POST`
 
 #### Request Body
@@ -268,13 +295,40 @@ Category ID: `677fdcb2a888fc1a74ed02ef`
         "image": "https://example.com/dell-xps.jpg",
         "status": "In Stock",
         "categoryId": "677fdcb2a888fc1a74ed02ef"
+    },
+    {
+        "name": "HP Spectre x360",
+        "description": "Convertible laptop with excellent battery life",
+        "price": 1499.99,
+        "discount": 12,
+        "image": "https://example.com/hp-spectre.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdcb2a888fc1a74ed02ef"
+    },
+    {
+        "name": "Asus ROG Zephyrus G14",
+        "description": "Compact gaming laptop with powerful specs",
+        "price": 1599.99,
+        "discount": 15,
+        "image": "https://example.com/asus-rog.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdcb2a888fc1a74ed02ef"
+    },
+    {
+        "name": "Lenovo ThinkPad X1 Carbon",
+        "description": "Business laptop with robust build quality",
+        "price": 1299.99,
+        "discount": 5,
+        "image": "https://example.com/thinkpad-x1.jpg",
+        "status": "In Stock",
+        "categoryId": "677fdcb2a888fc1a74ed02ef"
     }
 ]
 ```
 
-Products for Tablets
-Category ID: `677fdcfba888fc1a74ed02f2`
-**Endpoint:** `http://localhost:3000/products`
+Products for Tablets <br>
+Category ID: `677fdcfba888fc1a74ed02f2` <br>
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `POST`
 
 #### Request Body
@@ -329,9 +383,9 @@ Category ID: `677fdcfba888fc1a74ed02f2`
 ]
 ```
 
-Products for Wearables
-Category ID: `677fdd32a888fc1a74ed02f5`
-**Endpoint:** `http://localhost:3000/products`
+Products for Wearables <br>
+Category ID: `677fdd32a888fc1a74ed02f5` <br>
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `POST`
 
 ```json
@@ -384,9 +438,9 @@ Category ID: `677fdd32a888fc1a74ed02f5`
 ]
 ```
 
-Products for Home Appliances
-Category ID: `677fdd65a888fc1a74ed02f8`
-**Endpoint:** `http://localhost:3000/products`
+Products for Home Appliances <br>
+Category ID: `677fdd65a888fc1a74ed02f8` <br>
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `POST`
 
 ```json
@@ -439,7 +493,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 ]
 ```
 
-**Endpoint:** `http://localhost:3000/categories`
+**Endpoint:** `http://localhost:3000/categories` <br>
 **Method:** `GET`
 
 ```json
@@ -520,7 +574,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 ]
 ```
 
-**Endpoint:** `http://localhost:3000/products`
+**Endpoint:** `http://localhost:3000/products` <br>
 **Method:** `GET`
 
 ```json
@@ -921,7 +975,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 }
 ```
 
-`http://localhost:3000/products/subcategory/677fdd65a888fc1a74ed02f8`
+`http://localhost:3000/products/subcategory/677fdd65a888fc1a74ed02f8` <br>
 `GET`
 
 ```json
@@ -1013,7 +1067,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 ]
 ```
 
-`http://localhost:3000/products/0231dd7a-0alport5`
+`http://localhost:3000/products/0231dd7a-0alport5` <br>
 `PUT`
 
 ```json
@@ -1042,7 +1096,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 }
 ```
 
-`http://localhost:3000/products?search=alpha`
+`http://localhost:3000/products?search=alpha` <br>
 `GET`
 
 ```json
@@ -1068,7 +1122,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 }
 ```
 
-`http://localhost:3000/products?categoryId=677fdd32a888fc1a74ed02f5`
+`http://localhost:3000/products?categoryId=677fdd32a888fc1a74ed02f5` <br>
 `GET`
 
 ```json
@@ -1154,7 +1208,7 @@ Category ID: `677fdd65a888fc1a74ed02f8`
 }
 ```
 
-`http://localhost:3000/products?minPrice=100&maxPrice=200`
+`http://localhost:3000/products?minPrice=100&maxPrice=200` <br>
 `GET`
 
 ```json
