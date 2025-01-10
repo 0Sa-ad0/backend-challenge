@@ -214,7 +214,7 @@ Home Appliances
 }
 ```
 
-# Products
+*Products*
 Products for Mobile Phones
 Category ID: 677fdbd1a888fc1a74ed02ec
 Endpoint: http://localhost:3000/products
