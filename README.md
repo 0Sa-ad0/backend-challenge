@@ -63,6 +63,8 @@ Implement a method to retrieve products with the following filters:
 - **Search by Name**: Search for products by name (partial or full match).
 - **Pricing Calculation**: In the response, include the original and the final price after applying the discount (if any).
 
+![Data Model diagram]{https://github.com/0Sa-ad0/backend-challenge/blob/6cc3876ded8876483c8ed360e32623c72e05342f/Data%20Model%20diagram.JPG}
+
 # API Documentation
 
 ## Categories API
