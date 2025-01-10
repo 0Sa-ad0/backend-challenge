@@ -63,8 +63,6 @@ Implement a method to retrieve products with the following filters:
 - **Search by Name**: Search for products by name (partial or full match).
 - **Pricing Calculation**: In the response, include the original and the final price after applying the discount (if any).
 
-
-
 # API Documentation
 
 ## Categories API
@@ -213,7 +211,7 @@ Response Example:
 }
 ```
 
-*Products*
+*Products* <br>
 Products for Mobile Phones
 Category ID: `677fdbd1a888fc1a74ed02ec`
 **Endpoint:** `http://localhost:3000/products`
