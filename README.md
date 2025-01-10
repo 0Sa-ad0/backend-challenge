@@ -1,3 +1,70 @@
+# **Backend Development Challenge**
+
+### Environment
+
+NodeJS/Express JS, JavaScript/TypeScript, MongoDB
+
+---
+
+### What To Build
+
+### **1. Create a Product**
+
+Implement functionality to create a product with the following attributes:
+
+- **Name**: The product's name.
+- **Description**: A brief description of the product.
+- **Price**: The product's price.
+- **Discount**: Applicable discount (percentage).
+- **Image**: Product's image url.
+- **Status**: Availability status (Stock Out / In Stock).
+- **Product Code**: An auto-generated unique identifier (detailed rules below).
+
+### **2. Generate Product Code**
+
+Product codes must be auto-generated based on the product name with the following steps:
+
+1. Extract the **longest strictly increasing substring** (consecutive letters in alphabetical order and lowercase).
+2. If multiple substrings of equal length exist, concatenate them.
+3. Append the starting and ending index of the substring in the product name.
+4. Add the **hashed value** of the product name at the beginning as a prefix with a dash (-).
+5. **Format**: The final product code should follow this structure:
+
+    **<hashed product name>-<start_index><substring><end_index>**
+
+**Example**:
+
+For a product named **"Alpha Sorter"**:
+
+- Longest increasing substrings: **"alp"** and **"ort"**.
+- Starting and ending indices: 0 and 8.
+- Generated code: **"p48asd4-0alport8"**.
+
+**Note**: Ensure product codes are unique.
+
+### **3. Associate Products with Categories**
+
+- Each product must be under a **valid category**.
+- Validate product-category associations to ensure consistency.
+
+### **4. Update Product Information**
+
+Enable the functionality to update the following product details:
+
+- **Status**: Update availability (Stock Out / In Stock).
+- **Description**: Modify product description.
+- **Discount**: Update the discount percentage.
+
+### **5. Get Products with Filters**
+
+Implement a method to retrieve products with the following filters:
+
+- **Filter by Category**: Fetch products belonging to a specific category.
+- **Search by Name**: Search for products by name (partial or full match).
+- **Pricing Calculation**: In the response, include the original and the final price after applying the discount (if any).
+
+
+
 # API Documentation
 
 ## Categories API
